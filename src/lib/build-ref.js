@@ -71,8 +71,11 @@ async function buildRef({
 	});
 	log.debug(JSON.stringify(result, null, 4));
 
+	const stdout = JSON.parse(result.stdout);
+	// Normalize file names - remove dynamic chunk parts
+	stdout.files = stdout.files.map(file => file.replace(/(\w+)-[\dA-Z]+\.([\w.]+)$/, '$1.$2'));
 	const pkgData = {
-		...JSON.parse(result.stdout),
+		...stdout,
 		ref: refData,
 		size: 0,
 		sizeGzip: 0,
