@@ -37,15 +37,15 @@ function calculateDiff(head, base) {
 
 function processPkgFiles(fileMap, type, pkgData) {
 	for (const file of pkgData.files) {
-		const path = file.path.replace(/(\w+)-[A-Z0-9]+\.([\w.]+)$/, '$1.$2');
-		if (!fileMap[path]) {
-			fileMap[path] = {
-				path,
+		file.path = file.path.replace(/(\w+)-[\dA-Z]+\.([\w.]+)$/, '$1.$2');
+		if (!fileMap[file.path]) {
+			fileMap[file.path] = {
+				path: file.path,
 				label: file.label,
 			};
 		}
 
-		const entry = fileMap[path];
+		const entry = fileMap[file.path];
 		entry[type] = file;
 
 		if (entry.head && entry.base) {
