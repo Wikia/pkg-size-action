@@ -14,11 +14,11 @@ import comparePackages from './compare-packages.js';
 
 const directionSymbol = (value) => {
 	if (value < 0) {
-		return '↓';
+		return ' :arrow_down: ';
 	}
 
 	if (value > 0) {
-		return '↑';
+		return ' :arrow_up: ';
 	}
 
 	return '';
