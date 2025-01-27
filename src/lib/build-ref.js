@@ -74,7 +74,7 @@ async function buildRef({
 	const stdout = JSON.parse(result.stdout);
 	// Normalize file names - remove dynamic chunk parts
 	stdout.files = stdout.files.map((file) => {
-		file.path = file.path.replace(/(\w+)-[\dA-Z]+\.([\w.]+)$/, '$1.$2');
+		file.path = file.path.replace(/(\w+)-[\dA-Za-z]+\.([\w.]+)$/, '$1.$2');
 		return file;
 	});
 	const pkgData = {
