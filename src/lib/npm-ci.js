@@ -29,7 +29,7 @@ async function npmCi({ cwd } = {}) {
 		log.info('Installing dependencies with pnpm');
 
 		// pnpm is not installed on GitHub Actions by default
-		installCommand = 'npx pnpm i --frozen-lockfile';
+		installCommand = 'pnpm i --frozen-lockfile';
 	} else {
 		log.info('No lock file detected. Installing dependencies with npm');
 		installCommand = 'npm i';
