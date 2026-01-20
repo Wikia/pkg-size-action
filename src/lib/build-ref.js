@@ -60,8 +60,17 @@ async function buildRef({
 	}
 
 	if (!pkgSizeInstalled) {
+		const pkgSizeCheck = await exec('pnpm ls pkg-size --depth 0').catch((error) => {
+			throw new Error(`Failed to determine whether pkg-size is installed: ${error.message}`);
+		});
+		pkgSizeInstalled = pkgSizeCheck.stdout.includes('pkg-size@');
+	}
+
+	if (!pkgSizeInstalled) {
 		log.info('Installing pkg-size globally');
-		await exec('npm i -g pkg-size');
+		await exec('npm i -g pkg-size').catch((error) => {
+			throw new Error(`Failed to install pkg-size globally: ${error.message}`);
+		});
 		pkgSizeInstalled = true;
 	}
 
