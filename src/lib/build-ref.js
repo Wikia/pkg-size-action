@@ -63,7 +63,7 @@ async function buildRef({
 		const pkgSizeCheck = await exec('pnpm ls pkg-size --depth 0').catch((error) => {
 			throw new Error(`Failed to determine whether pkg-size is installed: ${error.message}`);
 		});
-		pkgSizeInstalled = pkgSizeCheck.stdout.includes('pkg-size@');
+		pkgSizeInstalled = pkgSizeCheck.stdout.includes('pkg-size');
 	}
 
 	if (!pkgSizeInstalled) {
